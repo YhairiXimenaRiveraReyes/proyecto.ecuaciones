@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcuaZone</title>
+    <style>
+        /* Estilos para el header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Estilos para el nav */
+        nav {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        /* Estilos para el footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Estilo para la barra lateral */
+        .sidebar {
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #111;
+            padding-top: 20px;
+        }
+
+        .sidebar .logo {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        /* Estilo para el contenido principal */
+        .main-content {
+            margin-left: 200px;
+            padding: 20px;
+            min-height: calc(100vh - 120px); /* Para que el contenido no se solape con el footer */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Bienvenido a EcuaZone: El Mundo de las Ecuaciones</h1>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav>
+        
+        <a href="ecuacionesprimergrado.html">Lineales</a>
+        <a href="ecuacionessegundo.html">Cuadraticas</a>
+        <a href="ecuacionestercergrado.html">Cúbicas</a>
+    </nav>
+
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <div class="logo">EcuaZone</div>
+        <a href="#">Inicio</a>
+        <a href="#">Contacto</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <h1> ¿Qué son las ecuaciones? </h1>
+        <p>Las ecuaciones son expresiones matemáticas que establecen una igualdad entre dos términos. 
+            Representan relaciones fundamentales y tienen aplicaciones en la física, economía, ingeniería, y muchas más disciplinas.
+        </p>
+        
+        <ul>
+            <li>Ecuaciones lineales: Representan relaciones directas y sencillas.</li>
+            <li>Ecuaciones cuadráticas: Modelan trayectorias y áreas.</li>
+            <li>Ecuaciones cúbicas: Describen curvas más complejas y comportamientos no lineales.</li>
+        </ul>
+
+        <h1>¿Qué encontrarás aquí?        </h1>
+            <p>Aprenderas las diferencias entre ecuaciones lineales, cuadráticas y cúbicas. Obtendras ayuda de una calculadora 
+                que te ayudara a resolverlas. Como esta pagina te ayuda a resolver tus ecuaciones
+                paso a paso podras desarrollar tus habilidades y mejorarlas. Una vez comprendiendo el tema puedes ponerlas
+                en practica en la vida real y demostrar lo mucho que aprendiste en EcuaZone.
+            </p>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 EcuaZone. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+       function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('collapsed');
+        }
+    </script>
+</body>
+</html>

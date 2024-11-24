@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecuación de Segundo Grado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            margin-left: 220px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .main-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        /* Estilo para la calculadora */
+        .container {
+            flex: 1;
+            max-width: 45%;
+            background: #262525;
+            padding: 20px;
+            border-radius: 8px;
+            color: #ffffff;
+        }
+        .info {
+            flex: 1;
+            max-width: 45%;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f9f9f9;
+        }
+        input[type="number"] {
+            width: 40%;
+            padding: 5px;
+            margin-top: 3px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100px;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #3e3ea4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: rgb(40, 35, 115);
+        }
+        #steps {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #f9f9f9;
+        }
+        h3{
+            color: #262525;
+        }
+        p{
+            color: #262525;
+        }
+        /* Estilo para la barra lateral */
+        .sidebar {
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #111111e0;
+            padding-top: 20px;
+        }
+        .sidebar .logo {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">EcuaZone</div>
+        <a href="indexori.html">Inicio</a>
+        <a href="#">Contacto</a>
+    </div>
+
+    <header>
+        <h1>Calculadora de Ecuación de Segundo Grado</h1>
+    </header>
+
+    <div class="main-container">
+        <!-- Calculadora -->
+        <div class="container">
+            <label for="a">Introduce el valor de a:</label>
+            <input type="number" id="a" placeholder="Valor de a">
+            <br><br>
+
+            <label for="b">Introduce el valor de b:</label>
+            <input type="number" id="b" placeholder="Valor de b">
+            <br><br>
+
+            <label for="c">Introduce el valor de c:</label>
+            <input type="number" id="c" placeholder="Valor de c">
+            <br><br>
+
+            <button onclick="resolverEcuacion()">Resolver</button>
+
+            <h2>Resultado:</h2>
+            <p id="resultado"></p>
+
+            <div id="steps"></div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="info">
+            <h4>Ejemplo de ecuaciones cuadráticas</h4>
+            <p>Una ecuación cuadrática tiene la forma general:</p>
+            <p><strong>ax² + bx + c = 0</strong></p>
+            <h5>Ejemplos:</h5>
+            <ul>
+                <li><strong>Ecuación: \(2x² + 4x - 6 = 0\)</strong> → Soluciones: \(x₁ = 1\), \(x₂ = -3\)</li>
+                <li><strong>Ecuación: \(x² - 4 = 0\)</strong> → Soluciones: \(x₁ = 2\), \(x₂ = -2\)</li>
+                <li><strong>Ecuación: \(x² + 6x + 9 = 0\)</strong> → Solución: \(x = -3\) (raíz doble)</li>
+            </ul>
+            <p>La ecuación cuadrática se resuelve utilizando la fórmula:</p>
+            <p><strong>x = (-b ± √(b² - 4ac)) / 2a</strong></p>
+        </div>
+    </div>
+
+    <script>
+        function resolverEcuacion() {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const c = parseFloat(document.getElementById("c").value);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                alert("Por favor, ingresa valores válidos para a, b y c.");
+                return;
+            }
+
+            // Calculamos el discriminante: D = b^2 - 4ac
+            const D = Math.pow(b, 2) - (4 * a * c);
+            let resultado;
+            let pasos = "<h3>Pasos para resolver la ecuación:</h3>";
+
+            pasos += `<p>Ecuación: ${a}x² + ${b}x + ${c} = 0</p>`;
+            pasos += `<p>Calculamos el discriminante: D = b² - 4ac</p>`;
+            pasos += `<p>D = ${b}² - 4(${a})(${c}) = ${D}</p>`;
+
+            // Evaluamos el discriminante
+            if (D > 0) {
+                // Dos soluciones reales distintas
+                const x1 = (-b + Math.sqrt(D)) / (2 * a);
+                const x2 = (-b - Math.sqrt(D)) / (2 * a);
+
+                resultado = `Las soluciones son: x₁ = ${x1} y x₂ = ${x2}`;
+                pasos += `<p>Como D > 0, existen dos soluciones reales distintas:</p>`;
+                pasos += `<p>x₁ = (-${b} + √${D}) / (2${a}) = ${x1}</p>`;
+                pasos += `<p>x₂ = (-${b} - √${D}) / (2${a}) = ${x2}</p>`;
+            } else if (D === 0) {
+                // Una solución real (raíz doble)
+                const x = -b / (2 * a);
+
+                resultado = `La solución es: x = ${x}`;
+                pasos += `<p>Como D = 0, existe una solución real doble:</p>`;
+                pasos += `<p>x = -${b} / (2${a}) = ${x}</p>`;
+            } else {
+                // No hay soluciones reales
+                resultado = "No existen soluciones reales (el discriminante es negativo).";
+                pasos += `<p>Como D < 0, no hay soluciones reales.</p>`;
+            }
+
+            // Mostrar el resultado y los pasos
+            document.getElementById("resultado").innerText = resultado;
+            document.getElementById("steps").innerHTML = pasos;
+        }
+    </script>
+
+</body>
+</html>

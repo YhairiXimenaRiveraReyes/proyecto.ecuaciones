@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mi Primer LOGIN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-image: url(fondomat.avif);
+            background-size: cover;
+            font-family: 'Calibri', sans-serif;
+        }
+
+        header {
+            background-color: rgba(106, 105, 121, 0.9);
+            padding: 20px;
+            text-align: center;
+            color: #fffffe;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #f1dc61;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: white;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;  /* Esto hace que el main ocupe el espacio restante y empuje el footer hacia abajo */
+        }
+
+        .form-register {
+            width: 500px;
+            background: #45455ead;
+            margin-top: 100px;
+            padding: 30px;
+            margin: auto;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .form-register h4 {
+            font-size: 27px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .controls {
+            width: 100%;
+            background: #24303c;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            border: 1px solid #f1dc60;
+            font-size: 18px;
+            color: white;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            color: white;
+            background: #24303c;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border: 1px solid #ffffff;
+        }
+
+        .form-register p {
+            height: 40px;
+            text-align: center;
+            font-size: 18px;
+            line-height: 40px;
+        }
+
+        .form-register a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .form-register a:hover {
+            text-decoration: underline;
+        }
+
+        .form-register .botons {
+            width: 100%;
+            background: #d69c65;
+            border: none;
+            padding: 12px;
+            color: rgba(255, 255, 255, 0.671);
+            margin: 16px 0;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-register .botons:hover {
+            background: #b38154;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #45455ead;
+            color: rgb(255, 255, 255);
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>INICIO DE SESION</h1>
+    </header>
+
+    <main>
+        <div class="form-register">
+            <h4>Iniciar Sesión</h4>
+            <form id="loginForm" onsubmit="return chequeLogin(event)">
+                <input type="email" name="email" id="email" class="controls" placeholder="Ingresa tu email" required>
+                <input type="password" name="password" id="password" class="controls" placeholder="Ingresa tu contraseña" required>
+                <input type="submit" value="Ingresar" class="botons">
+                <div class="register-section">
+                    <p>¿No tienes cuenta? <a href="register.html">Registrarse</a></p>
+                </div>
+            </form>
+            <p id="LoginMensaje"></p>
+        </div>
+    </main>
+
+    <script>
+        let emailValido = "cbtis@gmail.com";
+        let passValido = "straykids";
+
+        const chequeLogin = (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const mensaje = document.getElementById("LoginMensaje");
+
+            if (email === emailValido && password === passValido) {
+                mensaje.textContent = "Inicio de sesión correcto";
+                mensaje.style.color = "green";
+
+                setTimeout(() => {
+                    window.location.href = "indexori.html"
+                }, 100);
+            } else {
+                mensaje.textContent = "Email o contraseña incorrecta";
+                mensaje.style.color = "red";
+            }
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Todos los derechos reservados.</p>    
+    </footer>
+</body>
+</html>

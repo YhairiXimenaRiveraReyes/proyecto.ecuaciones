@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolución de Ecuación de Primer Grado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            margin-left: 220px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .main-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .container {
+            flex: 1;
+            max-width: 40%;
+            background: #262525;
+            padding: 20px;
+            border-radius: 8px;
+            color: #ffffff;
+        }
+        .info {
+            flex: 1;
+            max-width: 40%;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f9f9f9;
+        }
+        input[type="number"] {
+            width: 40%;
+            padding: 5px;
+            margin-top: 3px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #184679;
+        }
+        .sidebar {
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #111;
+            padding-top: 20px;
+        }
+        .sidebar .logo {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">EcuaZone</div>
+        <a href="indexori.html">Inicio</a>
+        <a href="#">Contacto</a>
+    </div> 
+    <header>
+       <h1>Resolución de Ecuación de Primer Grado</h1>
+    </header>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Calculadora -->
+        <div class="container">
+            <div class="form-group">
+                <label for="a">Valor de a:</label>
+                <input type="number" id="a" required>
+            </div>
+            <div class="form-group">
+                <label for="b">Valor de b:</label>
+                <input type="number" id="b" required>
+            </div>
+            <button onclick="resolverEcuacion()">Resolver Ecuación</button>
+
+            <div id="steps" style="display: none;">
+                <h2>Pasos para resolver:</h2>
+                <div id="step1"></div>
+                <div id="step2"></div>
+                <div id="step3"></div>
+                <div id="resultado"></div>
+            </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="info">
+            <h4>Ejemplo de ecuaciones de primer grado</h4>
+            <p>Ecuación: \( ax + b = 0 \)</p>
+            <ul>
+                <li>Ejemplo: \( 2x + 4 = 0 \) → \( x = -2 \)</li>
+                <li>Ejemplo: \( -4x + 7 = 0 \) → \( x = 1.75 \)</li>
+                <li>Ejemplo: \( 10x - 100 = 0 \) → \( x = 10 \)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function resolverEcuacion() {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+
+            if (isNaN(a) || isNaN(b)) {
+                alert("Por favor, ingresa valores válidos para 'a' y 'b'.");
+                return;
+            }
+            if (a === 0) {
+                alert("'a' no puede ser cero en una ecuación de primer grado.");
+                return;
+            }
+
+            // Calcular el resultado
+            const x = -b / a;
+
+            // Mostrar pasos detallados
+            const pasos = document.getElementById("steps");
+            pasos.style.display = "block";
+            document.getElementById("step1").innerHTML = `
+                <strong>Paso 1:</strong> Partimos de la ecuación general: 
+                <strong>${a}x + ${b} = 0</strong>. Identificamos los valores de 'a' y 'b'.
+            `;
+            document.getElementById("step2").innerHTML = `
+                <strong>Paso 2:</strong> Aislamos el término con 'x'. Restamos ${b} en ambos lados: 
+                <strong>${a}x = -${b}</strong>.
+            `;
+            document.getElementById("step3").innerHTML = `
+                <strong>Paso 3:</strong> Dividimos ambos lados entre ${a} para despejar 'x': 
+                <strong>x = -(${b}) / ${a}</strong>.
+            `;
+            document.getElementById("resultado").innerHTML = `
+                <strong>Resultado:</strong> El valor de 'x' es: <strong>${x}</strong>.
+            `;
+        }
+    </script>
+
+</body>
+</html>

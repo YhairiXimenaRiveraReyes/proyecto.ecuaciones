@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Formulario Registro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif; 
+      background-image: url(fondomat.avif); 
+      background-size: cover; 
+      display: flex; 
+      flex-direction: column;
+      justify-content: space-between; /* Asegura que el header, formulario y footer estén distribuidos */
+      align-items: center;
+      height: 100vh; 
+    }
+    h1{
+      color: aliceblue;
+      font-size: 30px;
+    }
+
+    header {
+      width: 100%; 
+      background: #45455ead;
+      padding: 20px;
+      text-align: center; 
+      color: #ffffff;
+      font-size: 30px;
+      border-radius: 10px 10px 0 0;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-register {
+      width: 600px; 
+      background: #45455ead;
+      padding: 30px; 
+      border-radius: 10px; 
+      color: white; 
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+      margin-bottom: 20px; /* Separación del footer */
+    }
+
+    .form-register {
+      font-size: 24px; 
+      margin-bottom: 20px; 
+      text-align: center; 
+      color: #ffffff; 
+    }
+
+    .controls {
+      width: 100%; 
+      background: #24303c; 
+      padding: 12px;  
+      border-radius: 5px; 
+      margin-bottom: 16px; 
+      font-size: 16px; 
+      color: white; 
+    }
+
+    .controls:focus {
+      outline: none; 
+      border-color: #ffffff; 
+    }
+
+    button.btn {
+      width: 100%; 
+      background: #d69c65; 
+      border: none; 
+      padding: 12px; 
+      color: white; 
+      font-size: 16px; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      transition: background 0.3s; 
+    }
+
+    button.btn:hover {
+      background: #b38154; 
+    }
+
+    .login-section {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .login-section p {
+      font-size: 16px;
+    }
+
+    .login-section a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .login-section a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      width: 100%;
+      background: #45455ead;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>  
+  <header>
+    <h1>Formulario Registro</h1>
+  </header>
+  
+  <section class="form-register">
+    <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
+    <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
+    <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+    <input class="controls" type="password" name="contraseña" id="contraseña" placeholder="Ingrese su Contraseña">
+    <button class="btn" id="submitBtn" type="button">Enviar</button>
+    
+    <div class="login-section">
+      <p>¿Ya tienes una cuenta? <a href="login.html">Iniciar Sesión</a></p>
+    </div>
+  </section>
+  
+  <footer>
+    <p>&copy; 2024 Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    document.getElementById('submitBtn').addEventListener('click', function(event) {
+      event.preventDefault(); // Evita el envío del formulario por defecto
+
+      // Obtener los valores de los campos
+      const nombres = document.getElementById('nombres').value.trim();
+      const apellidos = document.getElementById('apellidos').value.trim();
+      const correo = document.getElementById('correo').value.trim();
+      const contraseña = document.getElementById('contraseña').value.trim();
+
+      // Validar campos
+      if (!nombres || !apellidos || !correo || !contraseña) {
+        alert('Todos los campos son obligatorios.');
+        return;
+      }
+
+      // Validar formato del correo
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(correo)) {
+        alert('Por favor, ingrese un correo electrónico válido.');
+        return;
+      }
+
+      // Aquí puedes agregar la lógica para enviar el formulario o procesar los datos
+      alert('Registro exitoso.'); // Mensaje de éxito
+    });
+  </script>
+</body>
+</html>

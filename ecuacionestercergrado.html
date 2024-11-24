@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolución de Ecuaciones Cúbicas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            margin-left: 220px;
+            display: flex;
+            flex-wrap: wrap; /* Permitir que los elementos se ajusten en caso de espacio insuficiente */
+            justify-content: space-between;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        /* Estilo de la calculadora */
+        .container {
+            margin: 20px;
+            max-width: 35%;
+            background: #262525;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1 1 600px; /* Hacer que la calculadora ocupe todo el espacio disponible */
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f9f9f9;
+        }
+        /* Estilo para barra de valores */
+        input[type="number"] {
+            width: 40%;
+            padding: 5px;
+            margin-top: 3px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        /* Estilo para botón de resolver */
+        button {
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #3e3ea4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        /* Estilo al pasar por encima del botón de resolver */
+        button:hover {
+            background-color: rgb(40, 35, 115);
+        }
+        #steps {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        /* Estilo para la barra lateral */
+        .sidebar {
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #111;
+            padding-top: 20px;
+        }
+        .sidebar .logo {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        /* Estilo para los ejemplos */
+        .examples {
+            margin: 20px;
+            max-width: 40%;
+            background: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1 1 400px; /* Hacer que los ejemplos también tengan un tamaño adecuado */
+        }
+        .examples h3 {
+            color: #333;
+        }
+        .example {
+            margin-bottom: 20px;
+        }
+        .example p {
+            color: #555;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">EcuaZone</div>
+        <a href="indexori.html">Inicio</a>
+        <a href="#">Contacto</a>
+    </div>
+
+    <header>
+         <h1>Calculadora de Ecuación Cúbica</h1>
+    </header>
+
+    <div class="container">
+        <label for="a">Valor de a: </label>
+        <input type="number" id="a" placeholder="Valor de a">
+        <br><br>
+        
+        <label for="b">Valor de b: </label>
+        <input type="number" id="b" placeholder="Valor de b">
+        <br><br>
+        
+        <label for="c">Valor de c: </label>
+        <input type="number" id="c" placeholder="Valor de c">
+        <br><br>
+        
+        <label for="d">Valor de d: </label>
+        <input type="number" id="d" placeholder="Valor de d">
+        <br><br>
+        
+        <button onclick="resolverEcuacionCubic()">Resolver Ecuación Cúbica</button>
+        
+        <h2>Resultado:</h2>
+        <p id="resultado"></p>
+        
+        <div id="steps"></div>
+    </div>
+
+    <div class="examples">
+        <h3>Ejemplos de Ecuaciones Cúbicas</h3>
+        <div class="example">
+            <h4>Ecuación 1: x³ - 6x² + 11x - 6 = 0</h4>
+            <p>Soluciones: x = 1, x = 2, x = 3</p>
+        </div>
+        <div class="example">
+            <h4>Ecuación 2: x³ + 3x² - 4x - 12 = 0</h4>
+            <p>Soluciones: x = -4, x = 1, x = 3</p>
+        </div>
+        <div class="example">
+            <h4>Ecuación 3: x³ + 2x² - 5x + 6 = 0</h4>
+            <p>Soluciones: x = -3, x = 1, x = 2</p>
+        </div>
+    </div>
+
+    <script>
+        function resolverEcuacionCubic() {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const c = parseFloat(document.getElementById("c").value);
+            const d = parseFloat(document.getElementById("d").value);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+                alert("Por favor, ingresa valores válidos para a, b, c y d.");
+                return;
+            }
+
+            const coeficientes = [a, b, c, d];
+            const soluciones = resolverCubic(coeficientes);
+
+            let resultado = "Las soluciones para la ecuación cúbica son: ";
+            let pasos = "<h3>Pasos para resolver la ecuación cúbica:</h3>";
+
+            pasos += `<p>Ecuación: ${a}x³ + ${b}x² + ${c}x + ${d} = 0</p>`;
+
+            if (soluciones.length === 1) {
+                resultado += `x = ${soluciones[0]}`;
+                pasos += `<p>Hay una solución real: x = ${soluciones[0]}</p>`;
+            } else {
+                resultado += soluciones.map((sol, i) => `x${i + 1} = ${sol}`).join(", ");
+                pasos += `<p>Las soluciones reales son: ${soluciones.join(", ")}</p>`;
+            }
+
+            document.getElementById("resultado").innerText = resultado;
+            document.getElementById("steps").innerHTML = pasos;
+        }
+
+        function resolverCubic(coef) {
+            const { a, b, c, d } = { a: coef[0], b: coef[1], c: coef[2], d: coef[3] };
+            let soluciones = [];
+
+            const maxIter = 100; 
+            const tol = 1e-6;
+
+            function f(x) {
+                return a * Math.pow(x, 3) + b * Math.pow(x, 2) + c * x + d;
+            }
+
+            function df(x) {
+                return 3 * a * Math.pow(x, 2) + 2 * b * x + c;
+            }
+
+            for (let i = -10; i <= 10; i++) {
+                let x0 = i;
+                let xi = x0;
+                for (let j = 0; j < maxIter; j++) {
+                    let fx = f(xi);
+                    let dfx = df(xi);
+                    let xNext = xi - fx / dfx;
+                    if (Math.abs(xNext - xi) < tol) {
+                        if (!soluciones.includes(xNext)) {
+                            soluciones.push(xNext);
+                        }
+                        break;
+                    }
+                    xi = xNext;
+                }
+            }
+
+            return soluciones;
+        }
+    </script>
+</body>
+</html>
